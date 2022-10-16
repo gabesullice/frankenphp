@@ -8,6 +8,7 @@ ENV PHPIZE_DEPS \
     g++ \
     gcc \
     libc-dev \
+    libgd-dev \
     make \
     pkg-config \
     re2c
@@ -17,7 +18,9 @@ RUN apt-get update && \
     $PHPIZE_DEPS \
     libargon2-dev \
     libcurl4-openssl-dev \
+    libgd-dev \
     libonig-dev \
+    libpng-dev \
     libreadline-dev \
     libsodium-dev \
     libsqlite3-dev \
@@ -36,6 +39,7 @@ RUN git clone --depth=1 --single-branch --branch=frankenphp-8.2 https://github.c
     ./configure \
         --enable-embed=static \
         --enable-zts \
+        --enable-gd \
         --disable-zend-signals \
         --with-config-file-scan-dir=/usr/local/lib/php/ && \
     make -j$(nproc) && \
